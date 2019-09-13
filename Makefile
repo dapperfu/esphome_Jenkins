@@ -18,4 +18,9 @@ bin/python:
 .PHONY: all_flash
 all_flash:
 	bin/esphome sonoff_sw1.yaml compile
+	bin/esphome feit_counter1.yaml compile
 
+.PHONY: all_upload
+all_upload:
+	bin/esphome sonoff_sw1.yaml upload
+	bin/esphome feit_counter1.yaml upload

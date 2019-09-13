@@ -29,6 +29,11 @@ pipeline {
         }
       }
     }
+    stage('OTA Updates') {
+      steps {
+        sh 'bin/esphome sonoff_sw1.yaml upload'
+      }
+    }
     stage('Post Build') {
       parallel {
         stage('Archive Artifacts') {
@@ -42,11 +47,6 @@ pipeline {
             sh 'rm secrets.yaml'
           }
         }
-      }
-    }
-    stage('OTA Updates') {
-      steps {
-        sh 'bin/esphome sonoff_sw1.yaml upload'
       }
     }
   }
