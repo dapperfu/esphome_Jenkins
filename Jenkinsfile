@@ -7,8 +7,17 @@ pipeline {
       }
     }
     stage('Build Firmwares') {
-      steps {
-        sh 'bin/esphome sonoff.yaml compile'
+      parallel {
+        stage('Sonoff Swich 1') {
+          steps {
+            sh 'bin/esphome sonoff_sw1.yaml compile'
+          }
+        }
+        stage('Feit Counter Light 1') {
+          steps {
+            sh 'bin/esphome feit_counter1.yaml compile'
+          }
+        }
       }
     }
   }
