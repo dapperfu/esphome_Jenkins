@@ -6,5 +6,10 @@ pipeline {
         sh 'make venv'
       }
     }
+    stage('Build Firmwares') {
+      steps {
+        sh 'bin/esphome sonoff.yaml compile'
+      }
+    }
   }
 }
