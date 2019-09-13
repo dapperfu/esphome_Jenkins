@@ -29,10 +29,24 @@ pipeline {
         }
       }
     }
-    stage('Archive Artifacts') {
+    stage('Post Build') {
+      parallel {
+        stage('Archive Artifacts') {
+          steps {
+            archiveArtifacts(artifacts: '**/*.bin', fingerprint: true)
+            archiveArtifacts(artifacts: '**.elf', fingerprint: true)
+          }
+        }
+        stage('Remove Secrets') {
+          steps {
+            sh 'rm secrets.yaml'
+          }
+        }
+      }
+    }
+    stage('OTA Updates') {
       steps {
-        archiveArtifacts(artifacts: '**/*.bin', fingerprint: true)
-        archiveArtifacts(artifacts: '**.elf', fingerprint: true)
+        sh 'bin/esphome sonoff_sw1.yaml upload'
       }
     }
   }
