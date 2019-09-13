@@ -31,7 +31,7 @@ pipeline {
     }
     stage('OTA Updates') {
       steps {
-        sh 'bin/esphome sonoff_sw1.yaml upload'
+        sh 'bin/esphome feit_counter1.yaml upload'
       }
     }
     stage('Post Build') {
