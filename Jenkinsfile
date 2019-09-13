@@ -1,9 +1,18 @@
 pipeline {
   agent any
   stages {
-    stage('Setup Python Virtual Enivornment') {
-      steps {
-        sh 'make venv'
+    stage('Enivorment Setup') {
+      parallel {
+        stage('Setup Python Virtual Enivornment') {
+          steps {
+            sh 'make venv'
+          }
+        }
+        stage('Secrets') {
+          steps {
+            sh 'cp ~/.ssh/secrets.yaml ./'
+          }
+        }
       }
     }
     stage('Build Firmwares') {
