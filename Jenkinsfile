@@ -32,6 +32,7 @@ pipeline {
     stage('Archive Artifacts') {
       steps {
         archiveArtifacts(artifacts: '**/*.bin', fingerprint: true)
+        archiveArtifacts(artifacts: '**.elf', fingerprint: true)
       }
     }
   }
