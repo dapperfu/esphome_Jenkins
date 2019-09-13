@@ -1,4 +1,4 @@
-# ```esphome``` Rolling Updates for LightBulbs: The Future
+# ```esphome``` Rolling Updates for LightBulbs: *The Future*
 
 Depending on how much VC funding you need, buzzwords:
 
