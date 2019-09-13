@@ -17,9 +17,9 @@ pipeline {
     }
     stage('Build Firmwares') {
       parallel {
-        stage('Sonoff Swich 1') {
+        stage('Feit Counter Light 2') {
           steps {
-            sh 'bin/esphome sonoff_sw1.yaml compile'
+            sh 'bin/esphome feit_counter2.yaml compile'
           }
         }
         stage('Feit Counter Light 1') {
@@ -32,6 +32,7 @@ pipeline {
     stage('OTA Updates') {
       steps {
         sh 'bin/esphome feit_counter1.yaml upload'
+        sh 'bin/esphome feit_counter2.yaml upload'
       }
     }
     stage('Post Build') {

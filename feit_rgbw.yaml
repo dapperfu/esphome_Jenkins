@@ -1,0 +1,17 @@
+- platform: cwww
+  name: ${friendly_name}
+  id: ${device_name}
+  cold_white: output_component1
+  warm_white: output_component2
+  cold_white_color_temperature: 153 mireds
+  warm_white_color_temperature: 500 mireds
+- platform: fastled_spi
+  id: ${device_name}_rgb
+  name: "${friendly_name} RGB"
+  chipset: SM16716
+  clock_pin: GPIO4
+  data_pin: GPIO14
+  power_supply: rgb_power
+  num_leds: 8
+  rgb_order: BGR
+
