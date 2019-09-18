@@ -1,6 +1,6 @@
 substitutions:
-  device_name: counter_2
-  friendly_name: Counter 2
+  device_name: dining_2
+  friendly_name: Dining 2
 
 esphome:
   name: ${device_name}
@@ -17,8 +17,6 @@ web_server:
 api:
 
 ota:
-
-logger:
 
 power_supply:
   - id: rgb_power

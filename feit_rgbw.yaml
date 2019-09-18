@@ -5,6 +5,7 @@
   warm_white: output_component2
   cold_white_color_temperature: 153 mireds
   warm_white_color_temperature: 500 mireds
+  restore_mode: ALWAYS_ON
 - platform: fastled_spi
   id: ${device_name}_rgb
   name: "${friendly_name} RGB"
@@ -14,4 +15,5 @@
   power_supply: rgb_power
   num_leds: 8
   rgb_order: BGR
+  restore_mode: ALWAYS_OFF
 
