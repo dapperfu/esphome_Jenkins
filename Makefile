@@ -1,13 +1,30 @@
-.PHONY: clean
-clean:
-	git clean -xfd
-	cp ~/.ssh/secrets.yaml ./
+YAMLS:=$(wildcard *.yaml)
+BUILD_DIRS=$(patsubst %.yaml,%,${YAMLS})
+BINS2:=$(patsubst %.yaml,%.bin,${YAMLS})
 
 .PHONY: debug
 debug:
-	$(info $${IPYNB}=${IPYNB})
-	$(info $${MD}=${MD})
+	$(info $${YAMLS}=${YAMLS})
+	$(info $${BUILD_DIRS}=${BUILD_DIRS})
+	$(info $${BINS1}=${BINS1})
+	$(info $${BINS2}=${BINS2})
+	
 
+
+.PHONY: all
+all: ${BUILD_DIRS}
+
+%: %.yaml
+	bin/esphome ${^} compile
+
+.PHONY: flash-all
+flash-all:
+	ls *.yaml | xargs -P8 -n1 -I{} bin/esphome {} upload
+
+.PHONY: clean
+clean:
+	git clean -xfd
+	
 .PHONY: venv
 venv: bin/python
 
