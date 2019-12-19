@@ -1,0 +1,28 @@
+# Feit Electric® 60W Equivalent A19 Soft White Alexa/Google Smart WiFi LED Bulb
+# https://www.menards.com/main/electrical/alarms-security-systems/security-accessories/feit-electric-reg-60w-equivalent-a19-soft-white-alexa-google-smart-wifi-led-bulb/pa80027kag/p-1531290477173.htm
+# https://fccid.io/SYW-A19AGT1
+# $9.88 
+# 800 lumen
+
+esphome:
+  name: ${device_name}
+  platform: ESP8266
+  board: esp01_1m
+  
+<<: !include base.yaml
+
+power_supply:
+  - id: rgb_power
+    pin: GPIO13
+
+output:
+  - platform: esp8266_pwm
+    id: ${device_name}_output
+    frequency: 1 Hz
+    pin: GPIO5
+
+light:
+  - platform: monochromatic
+    name: ${friendly_name}
+    id: ${device_name}
+    output: ${device_name}_output

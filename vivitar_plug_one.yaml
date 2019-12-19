@@ -1,0 +1,5 @@
+substitutions:
+  device_name: vivitar_plug_one
+  friendly_name: Vivitar Plug One
+  
+<<: !include include/VIVITAR_HA-1003-PDQ-MEN.yaml

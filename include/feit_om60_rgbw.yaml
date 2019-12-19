@@ -1,0 +1,55 @@
+# Feit OM60/RGBW/CA/AG 
+# https://www.menards.com/main/electrical/alarms-security-systems/security-accessories/feit-electric-reg-60w-equivalent-a19-color-changing-and-tunable-white-led-light-bulb/a800rgbwag/p-1531290477098-c-6464.htm
+# $12.99 
+# 800 lumen
+
+esphome:
+  name: ${device_name}
+  platform: ESP8266
+  board: esp01_1m
+  
+<<: !include base.yaml
+
+output:
+  - platform: esp8266_pwm
+    id: output_cold_white
+    pin: GPIO5
+  - platform: esp8266_pwm
+    id: output_warm_white
+    pin: GPIO12
+  - platform: sm16716
+    id: output_blue
+    channel: 0
+    power_supply: rgb_power
+  - platform: sm16716
+    id: output_green
+    channel: 1
+    power_supply: rgb_power
+  - platform: sm16716
+    id: output_red
+    channel: 2
+    power_supply: rgb_power    
+  
+power_supply:
+  - id: rgb_power
+    pin: GPIO13
+
+
+sm16716:
+  data_pin: GPIO14
+  clock_pin: GPIO4
+  num_channels: 3
+  num_chips: 1
+
+light:
+  - platform: rgbww
+    name: ${friendly_name}
+    id: ${device_name}
+    red: output_red
+    green: output_green
+    blue: output_blue
+    cold_white: output_cold_white
+    warm_white: output_warm_white
+    cold_white_color_temperature: 6500 K
+    warm_white_color_temperature: 2700 K
+

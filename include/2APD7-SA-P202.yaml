@@ -1,0 +1,48 @@
+# Vivitar
+#   Model: HA1003
+#   Electrical Rating: 120VAC, 60Hz, 10A, 1200W
+#   FCCID: None Found
+#   MID#:4970919
+#
+#   Menards:
+#    Model Number: HA-1003-PDQ-MEN Menards® SKU: 3581076
+#    https://www.menards.com/main/electrical/electrical-cords-cord-management/surge-protectors-power-strips/vivitar-smart-plug/ha-1003-pdq-men/p-1560494234424.htm
+#    $9.99
+
+esphome:
+  name: ${device_name}
+  platform: ESP8266
+  board: esp01_1m
+  
+<<: !include base.yaml
+
+# Enable Logging.
+logger:
+
+# Button on top of plug.
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO14
+      mode: INPUT_PULLUP
+      inverted: True               
+    name: "${friendly_name} Button"             
+    on_press:                          
+      - switch.toggle: "${device_name}_relay"
+switch:
+# Main relay
+  - platform: gpio
+    name: "${friendly_name} Relay"
+    pin: GPIO15
+    id: "${device_name}_relay"
+    restore_mode: RESTORE_DEFAULT_OFF
+  - platform: gpio
+    pin: GPIO0
+    id: "${device_name}_red_led"
+    inverted: True
+    restore_mode: RESTORE_DEFAULT_OFF
+  - platform: gpio
+    pin: GPIO2
+    id: "${device_name}_blue_led"
+    inverted: True
+    restore_mode: RESTORE_DEFAULT_ON

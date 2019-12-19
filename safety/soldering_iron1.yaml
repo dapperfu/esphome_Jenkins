@@ -1,0 +1,96 @@
+# Auto off after for safety reasons.
+
+# Sonoff Pow WiFi Switch with Power Consumption Measurement
+#   https://esphome.io/devices/sonoff.html#sonoff-pow-r2
+#
+# Circuit Specialists: 
+#   Item #CSI-PREMIER-75W
+#   Premier Programmable 3-Channel Soldering Station
+#
+substitutions:
+  device_name: soldering_iron1
+  friendly_name: CSI-PREMIER-75W
+  
+# Example configuration entry
+# Disable logging over USB
+logger:
+  baud_rate: 0
+
+uart:
+  rx_pin: RX
+  baud_rate: 4800
+
+sensor:
+  - platform: cse7766
+    current:
+      name: "${friendly_name} Current"
+    voltage:
+      name: "${friendly_name} Voltage"
+    power:
+      name: "${friendly_name} Power"  
+#
+# https://fccid.io/SYW-PLUGWIFIWP [Not showing up in database yet]
+
+esphome:
+  name: ${device_name}
+  platform: ESP8266
+  board: esp01_1m
+
+api:
+  reboot_timeout:
+    hours: 24
+
+ota:
+
+web_server:
+  port: 80
+  
+# Example configuration entry
+time:
+  - platform: sntp
+    timezone: Etc/EST
+    id: sntp_time
+    
+text_sensor:
+  - platform: version
+    name: ${device_name} Version
+  - platform: wifi_info
+    ip_address:
+      name: ${device_name} IP
+      
+<<: !include ../include/wifi.yaml
+
+# https://esphome.io/components/binary_sensor/index.html?highlight=binary_sensor
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO0
+      mode: INPUT_PULLUP
+      inverted: True
+    name: "${friendly_name} Button"             
+    on_click:  
+    # Long press required to enable CNC machines.
+    - min_length: 10s
+      max_length: 30s
+      then:                      
+        - switch.turn_on: "${device_name}_relay"
+    # 'Quick' press, power off.      
+    - min_length: 10ms
+      max_length: 10s
+      then:                      
+        - switch.turn_off: "${device_name}_relay"  
+
+# https://esphome.io/components/status_led.html?highlight=status_led
+status_led:
+  pin:
+    number: GPIO13
+    inverted: True
+  
+# https://esphome.io/components/switch/gpio.html
+switch:
+# Main relay
+  - platform: gpio
+    name: "${friendly_name} Relay"
+    id: "${device_name}_relay"
+    pin: GPIO12
+    restore_mode: RESTORE_DEFAULT_OFF

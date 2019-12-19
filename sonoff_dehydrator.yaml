@@ -1,0 +1,5 @@
+substitutions:
+  device_name: sonoff_dehydrator
+  friendly_name: Dehydrator
+  
+<<: !include include/sonoff_basic_base.yaml

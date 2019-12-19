@@ -1,0 +1,5 @@
+substitutions:
+  device_name: stanley_hotglue
+  friendly_name: Stanley Hot Glue
+  
+<<: !include include/sonoff_basic_base.yaml

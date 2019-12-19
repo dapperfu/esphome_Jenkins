@@ -1,0 +1,35 @@
+esphome:
+  name: ${device_name}
+  platform: ESP8266
+  board: esp01_1m
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO0
+      mode: INPUT_PULLUP
+      inverted: True
+    name: "${friendly_name} Button"
+    id: "${device_name}_button"
+    on_press:
+      - switch.toggle: "${device_name}_relay"
+    internal: true
+  - platform: status
+    name: "${friendly_name} Status"
+
+switch:
+  - platform: gpio
+    name: "${friendly_name}"
+    pin: GPIO12
+    id: "${device_name}_relay"
+    restore_mode: ALWAYS_OFF
+
+status_led:
+  pin:
+    number: GPIO13
+    inverted: yes
+    
+logger:
+
+# Base Household Config
+<<: !include base.yaml

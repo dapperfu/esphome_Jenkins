@@ -1,0 +1,32 @@
+api:
+  reboot_timeout:
+    hours: 24
+
+ota:
+
+web_server:
+  port: 80
+  
+# Example configuration entry
+time:
+  - platform: sntp
+    timezone: Etc/EST
+    id: sntp_time
+    
+sensor:
+  - platform: uptime
+    name: ${device_name} Uptime
+   
+  - platform: wifi_signal
+    name: ${device_name} WiFi Signal
+    update_interval: 60s
+
+text_sensor:
+  - platform: version
+    name: ${device_name} Version
+  
+  - platform: wifi_info
+    ip_address:
+      name: ${device_name} IP
+      
+<<: !include wifi.yaml

@@ -1,0 +1,41 @@
+substitutions:
+  device_name: new_device
+  friendly_name: ESPHome New Device
+
+ota:
+  
+# Example configuration entry
+<<: !include include/wifi.yaml
+
+  
+esphome:
+  name: ${device_name}
+  platform: ESP8266
+  board: esp01_1m
+
+web_server:
+  port: 80
+  
+# Enable Logging.
+logger:
+
+api:
+  reboot_timeout:
+    hours: 24
+
+# Example configuration entry
+# WiFi Info Text Sensor
+# The wifi_info text sensor platform exposes different wifi information via text sensors.
+# 
+# Configuration variables:
+#    ip_address (Optional): Expose the IP Address of the ESP as a text sensor. All options from Text Sensor.
+#    ssid (Optional): Expose the SSID of the currently connected WiFi network as a text sensor. All options from Text Sensor.
+#    bssid (Optional): Expose the BSSID of the currently connected WiFi network as a text sensor. All options from Text Sensor.
+text_sensor:
+  - platform: wifi_info
+    ip_address:
+      name: ESP IP Address
+    ssid:
+      name: ESP Connected SSID
+    bssid:
+      name: ESP Connected BSSID

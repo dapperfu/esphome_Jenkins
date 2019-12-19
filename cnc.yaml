@@ -1,0 +1,77 @@
+# Auto off after for safety reasons.
+
+substitutions:
+  device_name: cnc
+  friendly_name: CNC
+  
+# Based on the SYW-PLUGWIFIWP, with modifications.
+# <<: !include include/SYW-PLUGWIFIWP.yaml
+
+# FEIT Electric Outdoor Smart WiFi Dual Outlet Wall Plug
+#   Model Number: SMART_PLUG-OUD Menards® SKU: 3580117 
+#   https://www.menards.com/main/electrical/electrical-cords-cord-management/outlet-adapters/feit-electric-outdoor-smart-wifi-dual-outlet-wall-plug/smartplug-oud/p-1560494221818-c-6483.htm
+#   $17.99
+#
+# https://fccid.io/SYW-PLUGWIFIWP [Not showing up in database yet]
+
+esphome:
+  name: ${device_name}
+  platform: ESP8266
+  board: esp01_1m
+  
+<<: !include include/base.yaml
+
+# Enable Logging.
+logger:
+
+# https://esphome.io/components/binary_sensor/index.html?highlight=binary_sensor
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO13
+      mode: INPUT_PULLUP
+      inverted: True
+    name: "${friendly_name} Button"             
+    on_click:  
+    # Long press required to enable CNC machines.
+    - min_length: 10s
+      max_length: 30s
+      then:                      
+        - switch.turn_on: "${device_name}_relay"
+    # Quick press, power off.      
+    - min_length: 10ms
+      max_length: 10s
+      then:                      
+        - switch.turn_off: "${device_name}_blue_led"
+        - switch.turn_off: "${device_name}_relay"  
+
+# https://esphome.io/components/status_led.html?highlight=status_led
+status_led:
+  pin:
+    number: GPIO5
+    inverted: True
+  
+# https://esphome.io/components/switch/gpio.html
+switch:
+# Main relay
+  - platform: gpio
+    name: "${friendly_name} Relay"
+    id: "${device_name}_relay"
+    pin: GPIO12
+    restore_mode: RESTORE_DEFAULT_OFF
+    on_turn_on:
+    # Turn on the Blue LED to indicate the relay is powered on.
+    - switch.turn_on: ${device_name}_blue_led
+    - delay: 59min
+    # Blue LED turns off 1 minute early as 'warning'
+    - switch.turn_off: ${device_name}_blue_led
+    # Delay 1 more minute
+    - delay: 1min
+    - switch.turn_off: ${device_name}_relay
+
+  - platform: gpio
+    name: "${friendly_name} Blue LED"
+    id: ${device_name}_blue_led
+    pin: GPIO04
+    inverted: True
+    restore_mode: RESTORE_DEFAULT_OFF

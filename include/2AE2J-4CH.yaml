@@ -1,0 +1,77 @@
+# https://fccid.io/2AE2J-4CH
+esphome:
+  name: ${device_name}
+  platform: ESP8266
+  board: esp01_1m
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO0
+      mode: INPUT_PULLUP
+      inverted: True
+    name: "${friendly_name} Button 1"
+    internal: true
+    on_press:                          
+      - switch.toggle: "${device_name}_relay1"
+      
+  - platform: gpio
+    pin:
+      number: GPIO9
+      mode: INPUT_PULLUP
+      inverted: True
+    name: "${friendly_name} Button 2"
+    internal: true
+    on_press:                          
+      - switch.toggle: "${device_name}_relay2"
+      
+  - platform: gpio
+    pin:
+      number: GPIO10
+      mode: INPUT_PULLUP
+      inverted: True
+    name: "${friendly_name} Button 3"
+    internal: true
+    on_press:                          
+      - switch.toggle: "${device_name}_relay3"
+      
+  - platform: gpio
+    pin:
+      number: GPIO14
+      mode: INPUT_PULLUP
+      inverted: True
+    name: "${friendly_name} Button 4"
+    internal: true
+    on_press:                          
+      - switch.toggle: "${device_name}_relay4"
+switch:
+  - platform: gpio
+    name: "${relay1_name}"
+    id: "${device_name}_relay1"
+    pin: GPIO12
+    restore_mode: ${relay1_restoremode}
+  - platform: gpio
+    name: "${relay2_name}"
+    id: "${device_name}_relay2"
+    pin: GPIO5
+    restore_mode: ${relay2_restoremode}
+  - platform: gpio
+    name: "${relay3_name}"
+    id: "${device_name}_relay3"
+    pin: GPIO4
+    restore_mode: ${relay3_restoremode}
+  - platform: gpio
+    name: "${relay4_name}"
+    id: "${device_name}_relay4"
+    pin: GPIO15
+    restore_mode: ${relay4_restoremode}
+  - platform: restart
+      name: "${friendly_name} Restart"
+
+
+status_led:
+  pin:
+    number: GPIO13
+    inverted: yes
+# Base Household Config
+<<: !include base.yaml

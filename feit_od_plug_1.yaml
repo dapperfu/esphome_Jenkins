@@ -1,0 +1,5 @@
+substitutions:
+  device_name: od_plug1
+  friendly_name: Outdoor Plug 1
+  
+<<: !include include/SYW-PLUGWIFIWP.yaml

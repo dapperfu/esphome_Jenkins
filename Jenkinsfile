@@ -10,7 +10,7 @@ pipeline {
         }
         stage('Secrets') {
           steps {
-            sh 'cp ~/.ssh/secrets.yaml ./'
+            sh 'cp ~/.config/secrets.yaml ./include'
           }
         }
       }

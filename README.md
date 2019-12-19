@@ -1,11 +1,9 @@
-# ```esphome``` Rolling Updates for LightBulbs: *The Future*
+# Continuously Integrated Home
 
-Depending on how much VC funding you need, buzzwords:
 
+
+Stack:
+
+- esphome
 - Jenkins
-- Continuous Integration
-- ESP8266
-- Python
-- Embedded
-- IoT
-- OTA Updates
+- Github

@@ -1,0 +1,133 @@
+# Feit OM60/RGBW/CA/AG 
+# https://www.menards.com/main/electrical/alarms-security-systems/security-accessories/feit-electric-reg-60w-equivalent-a19-color-changing-and-tunable-white-led-light-bulb/a800rgbwag/p-1531290477098-c-6464.htm
+# $12.99 
+# 800 lumen
+
+esphome:
+  name: ${device_name}
+  platform: ESP8266
+  board: esp01_1m
+  
+<<: !include base.yaml
+
+power_supply:
+  - id: rgb_power
+    pin: GPIO13
+
+output:
+  - platform: esp8266_pwm
+    id: output_component1
+    pin: GPIO5
+  - platform: esp8266_pwm
+    id: output_component2
+    pin: GPIO12
+
+light:
+  - platform: cwww
+    name: ${friendly_name}
+    id: ${device_name}
+    cold_white: output_component1
+    warm_white: output_component2
+    cold_white_color_temperature: 153 mireds
+    warm_white_color_temperature: 500 mireds
+    restore_mode: ALWAYS_ON
+  - platform: fastled_spi
+    id: ${device_name}_rgb
+    name: "${friendly_name} RGB"
+    chipset: SM16716
+    clock_pin: GPIO4
+    data_pin: GPIO14
+    power_supply: rgb_power
+    num_leds: 8
+    rgb_order: BGR
+    restore_mode: ALWAYS_OFF
+
+
+substitutions:
+  devicename: "feit_bulb_2"
+  upper_devicename: "Feit Bulb 2"
+
+esphome:
+  name: ${devicename}
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: ${upper_devicename} Settings
+    password: ""
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+web_server:
+  port: 80
+
+sensor:
+  - platform: uptime
+    name: ${upper_devicename} Uptime
+   
+  - platform: wifi_signal
+    name: ${upper_devicename} WiFi Signal
+    update_interval: 60s
+
+text_sensor:
+  - platform: version
+    name: ${upper_devicename} Version
+  
+  - platform: wifi_info
+    ip_address:
+      name: ${upper_devicename} IP
+
+sm16716:
+  data_pin: GPIO12
+  clock_pin: GPIO14
+  num_channels: 3
+  num_chips: 1
+
+output:
+  - platform: sm16716
+    id: output_blue
+    channel: 0
+    power_supply: rgb_power
+  - platform: sm16716
+    id: output_green
+    channel: 1
+    power_supply: rgb_power
+  - platform: sm16716
+    id: output_red
+    channel: 2
+    power_supply: rgb_power
+  - platform: esp8266_pwm
+    id: output_cold_white
+    pin: GPIO3
+  - platform: esp8266_pwm
+    id: output_warm_white
+    pin: GPIO4
+
+power_supply:
+  - id: rgb_power
+    pin: GPIO13
+
+light:
+  - platform: rgbww
+    name: ${upper_devicename} 
+    id: ${devicename}
+    red: output_red
+    green: output_green
+    blue: output_blue
+    cold_white: output_cold_white
+    warm_white: output_warm_white
+    cold_white_color_temperature: 6500 K
+    warm_white_color_temperature: 2700 K

@@ -1,0 +1,62 @@
+substitutions:
+  device_name: dev_remote
+  friendly_name: Dev Remote
+
+esphome:
+  name: ${device_name}
+  platform: ESP8266
+  board: nodemcuv2
+
+<<: !include include/wifi.yaml
+
+api:
+
+logger:
+
+ota:
+
+web_server:
+  port: 80
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: D1
+      mode: INPUT_PULLUP
+      inverted: True
+    name: D1
+  - platform: gpio
+    pin:
+      number: D2    
+      mode: INPUT_PULLUP
+      inverted: True
+    name: D2
+  - platform: gpio
+    pin:
+      number: D3    
+      mode: INPUT_PULLUP
+      inverted: True
+    name: D3
+  - platform: gpio
+    pin:
+      number: D4    
+      mode: INPUT_PULLUP
+      inverted: True
+    name: D4
+
+switch:
+  - platform: gpio
+    name: "D0"
+    pin: D0
+  - platform: gpio
+    name: "D5"
+    pin: D5
+  - platform: gpio
+    name: "D6"
+    pin: D6
+  - platform: gpio
+    name: "D7"
+    pin: D7
+  - platform: gpio
+    name: "D8"
+    pin: D8

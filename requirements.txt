@@ -1,1 +1,6 @@
-git+https://github.com/esphome/esphome.git
+esphome
+
+pytest
+pytest-html
+pytest-csv
+

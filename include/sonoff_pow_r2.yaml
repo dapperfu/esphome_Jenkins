@@ -1,0 +1,43 @@
+# Disable logging over USB
+logger:
+  baud_rate: 0
+
+uart:
+  rx_pin: RX
+  baud_rate: 4800
+
+sensor:
+  - platform: cse7766
+    current:
+      name: "${friendly_name} Current"
+    voltage:
+      name: "${friendly_name} Voltage"
+    power:
+      name: "${friendly_name} Power"
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO0
+      mode: INPUT_PULLUP
+      inverted: True
+    name: "${friendly_name} Button"
+    on_press:
+      - switch.toggle: relay
+    internal: True
+      
+switch:
+  - platform: gpio
+    name: "${friendly_name}"
+    pin: GPIO12
+    id: relay
+    inverted: no
+    restore_mode: ALWAYS_ON
+
+status_led:
+  pin:
+    number: GPIO13
+    inverted: yes
+
+# Base Household Config
+<<: !include base.yaml

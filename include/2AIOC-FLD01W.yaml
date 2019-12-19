@@ -1,0 +1,56 @@
+# Vivitar Water Sensor
+#   Model: HKWL-FLD01W
+#   Item: WT12-PDQ-MEN
+#   FCCID: A2IOC-FLD01W
+#   MID#:3020819
+#
+# Menards:
+# Incorrect photo shown:
+#   https://www.menards.com/main/plumbing/pumps-tanks/pump-well-tank-accessories/vivitar-wifi-leak-sensor/wt12-pdq-men/p-1560494234760.htm
+#   $17.99
+#
+# Alibaba:
+#   It IS this device: https://www.alibaba.com/product-detail/Smart-Battery-Powered-Wireless-WiFi-Water_60784433805.html
+#   $8.76
+#
+# https://fccid.io/2AIOC-FLD01W
+
+
+esphome:
+  name: ${device_name}
+  platform: ESP8266
+  board: esp01_1m
+  
+<<: !include base.yaml
+
+# Enable Logging.
+logger:
+
+# Button on top of plug.
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO14
+      mode: INPUT_PULLUP
+      inverted: True               
+    name: "${friendly_name} Button"             
+    on_press:                          
+      - switch.toggle: "${device_name}_relay"
+
+switch:
+# Main relay
+  - platform: gpio
+    name: "${friendly_name} Relay"
+    pin: GPIO12
+    id: "${device_name}_relay"
+    restore_mode: RESTORE_DEFAULT_OFF
+  - platform: gpio
+    pin: GPIO04
+    id: led2
+    inverted: True
+    restore_mode: RESTORE_DEFAULT_ON
+  - platform: gpio
+    pin: GPIO13
+    id: led1
+    inverted: True
+    restore_mode: RESTORE_DEFAULT_ON

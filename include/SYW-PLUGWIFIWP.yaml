@@ -1,0 +1,54 @@
+# FEIT Electric Outdoor Smart WiFi Dual Outlet Wall Plug
+#   Model Number: SMART_PLUG-OUD Menards® SKU: 3580117 
+#   https://www.menards.com/main/electrical/electrical-cords-cord-management/outlet-adapters/feit-electric-outdoor-smart-wifi-dual-outlet-wall-plug/smartplug-oud/p-1560494221818-c-6483.htm
+#   $17.99
+#
+# https://fccid.io/SYW-PLUGWIFIWP [Not showing up in database yet]
+
+esphome:
+  name: ${device_name}
+  platform: ESP8266
+  board: esp01_1m
+  
+<<: !include base.yaml
+
+# Enable Logging.
+logger:
+
+# https://esphome.io/components/binary_sensor/index.html?highlight=binary_sensor
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO13
+      mode: INPUT_PULLUP
+      inverted: True               
+    name: "${friendly_name} Button"             
+    on_press:                          
+      - switch.toggle: "${device_name}_relay"
+      - switch.toggle: "${device_name}_blue_led"
+
+# https://esphome.io/components/status_led.html?highlight=status_led
+status_led:
+  pin:
+    number: GPIO5
+    inverted: True
+  
+# https://esphome.io/components/switch/gpio.html
+switch:
+# Main relay
+  - platform: gpio
+    name: "${friendly_name} Relay"
+    id: "${device_name}_relay"
+    pin: GPIO12
+    restore_mode: RESTORE_DEFAULT_OFF
+  - platform: gpio
+    name: "${friendly_name} Blue LED"
+    id: ${device_name}_blue_led
+    pin: GPIO4
+    inverted: True
+    restore_mode: RESTORE_DEFAULT_OFF
+#  - platform: gpio
+#    pin: GPIO5
+#    id: ${device_name}_red_led
+#    inverted: True
+#    restore_mode: RESTORE_DEFAULT_OFF

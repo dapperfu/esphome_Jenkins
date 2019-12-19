@@ -20,12 +20,12 @@ all: ${BUILD_DIRS}
 
 %: %.yaml
 	# Compile each build directory from the yaml file.
-	${PYTHON_VENV}/bin/esphome ${^} compile
+	esphome ${^} compile
 
 .PHONY: flash-all
 flash-all:
 	# Compile
-	ls *.yaml | xargs -P8 -n1 -I{} ${PYTHON_VENV}/bin/esphome {} upload
+	ls *.yaml | xargs -P8 -n1 -I{} esphome {} upload
 
 .PHONY: clean
 clean:
