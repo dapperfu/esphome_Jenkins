@@ -5,4 +5,3 @@ wifi:
   fast_connect: true
   ap:
     ssid: "${device_name}_ap"
-    password: !secret ap_password

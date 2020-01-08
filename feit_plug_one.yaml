@@ -1,5 +1,0 @@
-substitutions:
-  device_name: plug_one
-  friendly_name: Plug One
-  
-<<: !include include/SYW-PLUGWIFI.yaml

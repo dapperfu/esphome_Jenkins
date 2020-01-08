@@ -1,0 +1,7 @@
+substitutions:
+  device_name: feit_plug_1
+  friendly_name: Plug 1
+  device_uuid: 337f2024-083a-4bbe-b196-f58afa485c91
+
+<<: !include include/SYW-PLUGWIFI.yaml
+    

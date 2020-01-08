@@ -1,0 +1,5 @@
+substitutions:
+  device_name: feit_rgb4
+  friendly_name: RGB4
+
+<<: !include include/feit_om60_rgbw.yaml

@@ -1,0 +1,18 @@
+substitutions:
+  device_name: merkury_br30_1
+  friendly_name: Morning Alarm
+
+<<: !include include/2AJ3WEBESHW01.yaml
+
+time:
+  - platform: sntp
+    timezone: Etc/EST
+    id: sntp_time
+    on_time:
+      # Every morning on weekdays
+      - seconds: 00
+        minutes: 00
+        hours: 7
+        days_of_week: MON-FRI
+        then:
+          - light.turn_on: ${device_name}

@@ -11,9 +11,7 @@ esphome:
   
 <<: !include base.yaml
 
-power_supply:
-  - id: rgb_power
-    pin: GPIO13
+logger:
 
 output:
   - platform: esp8266_pwm
@@ -26,3 +24,4 @@ light:
     name: ${friendly_name}
     id: ${device_name}
     output: ${device_name}_output
+    restore_mode: ALWAYS_ON

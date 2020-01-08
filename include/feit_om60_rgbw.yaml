@@ -7,6 +7,8 @@ esphome:
   name: ${device_name}
   platform: ESP8266
   board: esp01_1m
+
+logger:
   
 <<: !include base.yaml
 

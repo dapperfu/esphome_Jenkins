@@ -1,0 +1,39 @@
+# Merkury BR30 Smart Light Bulb, 65W Tunable White
+# Model Number: MI-BW905
+#	FCCID: 2AJ3WEBESHW01 [https://fccid.io/2AJ3WEBESHW01]
+#   Wifi Module: TYLC2 (tuya)
+#	8W 750LM (printed on bulb), 700LM (Walmart Website), 450LM (Manual submitted to FCC)
+#
+#   https://www.walmart.com/ip/Merkury-Innovations-BR30-Smart-Light-Bulb-65W-Tunable-White-LED-1-Pack/404320234
+# SEO: esphome 2AJ3WEBESHW01
+esphome:
+  name: ${device_name}
+  platform: ESP8266
+  board: esp01_1m
+  
+<<: !include base.yaml
+
+logger:
+
+output:
+  - platform: esp8266_pwm
+    pin: GPIO5
+    id: cold_white
+  - platform: esp8266_pwm
+    pin: GPIO12
+    id: warm_white
+
+light:
+  - platform: cwww # https://esphome.io/components/light/cwww.html
+    name: ${friendly_name}
+    id: ${device_name}
+    cold_white: cold_white
+    warm_white: warm_white
+    cold_white_color_temperature: 6500 K
+    warm_white_color_temperature: 2700 K
+    default_transition_length: 300s
+
+time:
+  - platform: sntp
+    timezone: Etc/EST
+    id: sntp_time

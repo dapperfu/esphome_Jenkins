@@ -1,5 +1,3 @@
-# Auto off after for safety reasons.
-
 substitutions:
   device_name: cnc
   friendly_name: CNC
@@ -62,12 +60,9 @@ switch:
     on_turn_on:
     # Turn on the Blue LED to indicate the relay is powered on.
     - switch.turn_on: ${device_name}_blue_led
-    - delay: 59min
+    - delay: 60min
     # Blue LED turns off 1 minute early as 'warning'
     - switch.turn_off: ${device_name}_blue_led
-    # Delay 1 more minute
-    - delay: 1min
-    - switch.turn_off: ${device_name}_relay
 
   - platform: gpio
     name: "${friendly_name} Blue LED"

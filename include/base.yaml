@@ -6,27 +6,40 @@ ota:
 
 web_server:
   port: 80
-  
+
 # Example configuration entry
 time:
   - platform: sntp
     timezone: Etc/EST
     id: sntp_time
+  - platform: homeassistant
+    id: homeassistant_time
     
 sensor:
   - platform: uptime
-    name: ${device_name} Uptime
+    name: ${friendly_name} Uptime
+    id: ${device_name}_uptime
    
   - platform: wifi_signal
-    name: ${device_name} WiFi Signal
-    update_interval: 60s
+    name: ${friendly_name} WiFi Signal
+    id: ${device_name}_signal
 
 text_sensor:
   - platform: version
-    name: ${device_name} Version
+    name: ${friendly_name} Version
+    id: ${device_name}_version
   
   - platform: wifi_info
     ip_address:
-      name: ${device_name} IP
+      name: ${friendly_name} IP
+      id: ${device_name}_ip
       
+  - platform: template
+    name: ${friendly_name} Time
+    id: ${device_name}_time
+    lambda: |-
+      char str[17];
+      time_t currTime = id(sntp_time).now().timestamp;
+      strftime(str, sizeof(str), "%Y-%m-%d %H:%M", localtime(&currTime));
+      return { str };
 <<: !include wifi.yaml
