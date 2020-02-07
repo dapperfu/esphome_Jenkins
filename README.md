@@ -1,9 +1,8 @@
-# Continuously Integrated Home
-
-
+# Continuously Integrated Home IoT
 
 Stack:
 
 - esphome
 - Jenkins
 - Github
+

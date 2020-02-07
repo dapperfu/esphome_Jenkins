@@ -1,0 +1,17 @@
+substitutions:
+  device_name: csi_station_1a
+  friendly_name: CSI Station 1A
+
+<<: !include fccid/SYW-PLUGWIFI.yaml
+    
+switch:
+# Main relay
+  - platform: gpio
+    name: "${friendly_name} Relay"
+    pin: GPIO12
+    id: "${device_name}_relay"
+    restore_mode: RESTORE_DEFAULT_OFF
+    # Automatically power it on after 1 min.
+    on_turn_on:
+    - delay: 20min
+    - switch.turn_off: "${device_name}_relay"
