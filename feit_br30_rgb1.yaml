@@ -1,0 +1,5 @@
+substitutions:
+  device_name: feit_br30_rgb1
+  friendly_name: BR30 RGB1
+
+<<: !include fccid/SYW-BR30RGBWAGT1.yaml

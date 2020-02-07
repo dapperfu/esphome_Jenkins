@@ -1,0 +1,15 @@
+wifi:
+  networks:
+  - ssid: !secret wifi_ssid
+    password: !secret wifi_password
+    priority: 100
+  - ssid: !secret wifi_ssid2
+    password: !secret wifi_password2
+    priority: 50
+  - ssid: !secret wifi_ssid3
+    password: !secret wifi_password3
+    priority: 0
+  reboot_timeout: "2h"
+  fast_connect: false
+  ap:
+    ssid: "${device_name}_ap"

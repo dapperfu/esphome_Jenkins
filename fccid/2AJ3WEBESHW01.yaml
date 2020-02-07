@@ -11,7 +11,7 @@ esphome:
   platform: ESP8266
   board: esp01_1m
   
-<<: !include base.yaml
+<<: !include ../config/base.yaml
 
 logger:
 
@@ -31,7 +31,8 @@ light:
     warm_white: warm_white
     cold_white_color_temperature: 6500 K
     warm_white_color_temperature: 2700 K
-    default_transition_length: 300s
+    default_transition_length: 10s
+    restore_mode: ALWAYS_OFF
 
 time:
   - platform: sntp

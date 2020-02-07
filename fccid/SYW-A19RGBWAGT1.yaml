@@ -1,0 +1,11 @@
+# Feit Electric® 65W Equivalent BR30 Color-Selectable LED Light Bulb
+#   aka: Hangzhou Eboylamp Electronics Co., Ltd.FCC ID:2AJ3WEBESHW06
+# 	Model Number: P_OM100-RGBW-CA-AG Menards® SKU: 3580110 
+#	$19.99: https://www.menards.com/main/electrical/light-bulbs/led-light-bulbs/feit-electric-100w-equivalent-a19-color-selectable-led-light-bulb/pom100-rgbw-ca-ag/p-1550302361952.htm
+# 	https://fccid.io/SYW-BR30RGBWAGT1
+
+# 17.7 watt / 1600 lumen ("100 watt")
+# RGB Tunable White 2700K <-> 6500K
+
+# Same Configuration
+<<: !include SYW-BR30RGBWAGT1.yaml

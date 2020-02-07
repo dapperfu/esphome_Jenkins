@@ -1,0 +1,8 @@
+# Stove hood. Used to kill the stove hood lights and fans. Can only power
+# off, not turn on.  Auto-power on after 1 min for WAF.
+
+substitutions:
+  device_name: nas_plug
+  friendly_name: NAS Plug
+
+<<: !include fccid/SYW-PLUGWIFI.yaml

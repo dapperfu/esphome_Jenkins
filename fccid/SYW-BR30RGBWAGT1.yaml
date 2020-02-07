@@ -1,0 +1,60 @@
+# Feit Electric® 65W Equivalent BR30 Color-Selectable LED Light Bulb
+#   aka: Hangzhou Eboylamp Electronics Co., Ltd.FCC ID:2AJ3WEBESHW06
+# 	Model Number: P_BR30_RGBW_AG Menards® SKU: 3580106 
+#	$19.88: https://www.menards.com/main/electrical/alarms-security-systems/security-accessories/feit-electric-reg-65w-equivalent-br30-color-selectable-led-light-bulb/pbr30rgbwag/p-1531290477248.htm
+# 	https://fccid.io/SYW-BR30RGBWAGT1
+
+# 8 watt / 650 lumen ("65 watt")
+# RGB Tunable White 2700K <-> 6500K
+
+esphome:
+  name: ${device_name}
+  platform: ESP8266
+  board: esp01_1m
+  
+<<: !include ../config/base.yaml
+
+logger:
+
+output:
+  - platform: esp8266_pwm
+    id: output_cold_white
+    pin: GPIO5
+  - platform: esp8266_pwm
+    id: output_warm_white
+    pin: GPIO12
+  - platform: sm16716
+    id: output_blue
+    channel: 1
+    power_supply: rgb_power
+  - platform: sm16716
+    id: output_green
+    channel: 1
+    power_supply: rgb_power
+  - platform: sm16716
+    id: output_red
+    channel: 0
+    power_supply: rgb_power    
+  
+power_supply:
+  - id: rgb_power
+    pin: GPIO13
+
+
+sm16716:
+  data_pin: GPIO14
+  clock_pin: GPIO4
+  num_channels: 3
+  num_chips: 1
+
+light:
+  - platform: rgbww
+    name: ${friendly_name}
+    id: ${device_name}
+    red: output_red
+    green: output_green
+    blue: output_blue
+    cold_white: output_cold_white
+    warm_white: output_warm_white
+    cold_white_color_temperature: 6500 K
+    warm_white_color_temperature: 2700 K

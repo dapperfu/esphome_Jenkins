@@ -1,27 +1,19 @@
-# Vivitar Water Sensor
-#   Model: HKWL-FLD01W
-#   Item: WT12-PDQ-MEN
-#   FCCID: A2IOC-FLD01W
-#   MID#:3020819
+# FEIT Electric Indoor Smart WiFi Wall Plug
+#   Model Number: SMART_PLUG-IND Menards® SKU: 3580116
+#   https://www.menards.com/main/electrical/electrical-cords-cord-management/outlet-adapters/feit-electric-indoor-smart-wifi-wall-plug/smartplug-ind/p-1560494221678.htm
+#   $12.99
 #
-# Menards:
-# Incorrect photo shown:
-#   https://www.menards.com/main/plumbing/pumps-tanks/pump-well-tank-accessories/vivitar-wifi-leak-sensor/wt12-pdq-men/p-1560494234760.htm
-#   $17.99
-#
-# Alibaba:
-#   It IS this device: https://www.alibaba.com/product-detail/Smart-Battery-Powered-Wireless-WiFi-Water_60784433805.html
-#   $8.76
-#
-# https://fccid.io/2AIOC-FLD01W
-
+# https://fccid.io/SYW-PLUGWIFI
+# 
+# ESP8266 module on daughter-board: TYWE2S
+#   https://fccid.io/2ANDL-TYWE2S
 
 esphome:
   name: ${device_name}
   platform: ESP8266
   board: esp01_1m
   
-<<: !include base.yaml
+<<: !include ../config/base.yaml
 
 # Enable Logging.
 logger:

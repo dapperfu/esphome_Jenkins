@@ -1,0 +1,66 @@
+# Vivitar
+#   Model:  HA-1007-PDQ-MEN
+#     Electrical Rating: 120VAC, 60Hz, 10A, 1200W
+#     FCCID: 2APD7-SA-P202 (Images not correct, or mislabled FCC-ID)
+#     MID#:4970919
+#
+#   Menards:
+#     Model Number: HA-1003-PDQ-MEN Menards® SKU: 3581076
+#	  https://www.menards.com/main/electrical/electrical-cords-cord-management/surge-protectors-power-strips/vivitar-wifi-smart-multi-plug/ha-1007-pdq-men/p-1560494234508-c-13969.htm
+#	  $24.99
+
+esphome:
+  name: ${device_name}
+  platform: ESP8266
+  board: esp01_1m
+  
+<<: !include ../config/base.yaml
+
+# Enable Logging.
+logger:
+
+# Button on top of plug.
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO15
+      mode: INPUT_PULLUP
+      inverted: True               
+    name: "${friendly_name} Button"             
+    on_press:                          
+      - switch.toggle: "${device_name}_relay1"
+      - switch.toggle: "${device_name}_relay2"
+      - switch.toggle: "${device_name}_relay3"
+      - switch.toggle: "${device_name}_relay4"
+      - switch.toggle: "${device_name}_usb"
+switch:
+  - platform: gpio
+    name: "${friendly_name} Relay 1"
+    pin: GPIO13
+    id: "${device_name}_relay1"
+    restore_mode: RESTORE_DEFAULT_OFF
+  - platform: gpio
+    name: "${friendly_name} Relay 2"
+    pin: GPIO12
+    id: "${device_name}_relay2"
+    restore_mode: RESTORE_DEFAULT_OFF
+  - platform: gpio
+    name: "${friendly_name} Relay 3"
+    pin: GPIO14
+    id: "${device_name}_relay3"
+    restore_mode: RESTORE_DEFAULT_OFF
+  - platform: gpio
+    name: "${friendly_name} Relay 4"
+    pin: GPIO15
+    id: "${device_name}_relay4"
+    restore_mode: RESTORE_DEFAULT_OFF
+  - platform: gpio
+    name: "${friendly_name} USB"
+    pin: GPIO5
+    id: "${device_name}_usb"
+    restore_mode: RESTORE_DEFAULT_OFF
+  - platform: gpio
+    name: "${friendly_name} LED"
+    pin: GPIO0
+    id: "${device_name}led"
+    restore_mode: RESTORE_DEFAULT_OFF

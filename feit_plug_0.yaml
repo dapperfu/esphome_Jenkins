@@ -1,7 +1,6 @@
 substitutions:
-  device_name: feit_plug_0
-  friendly_name: Plug 0
-  device_uuid: 9c3188c5-9b5a-43cc-bdab-d171fee507fc
+  device_name: tv_plug_1
+  friendly_name: TV Plug 1
 
-<<: !include include/SYW-PLUGWIFI.yaml
+<<: !include fccid/SYW-PLUGWIFI.yaml
     

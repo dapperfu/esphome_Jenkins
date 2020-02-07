@@ -1,0 +1,5 @@
+substitutions:
+  device_name: vivitar_powerstrip1
+  friendly_name: Vivitar Power Strip 1
+  
+<<: !include fccid/2APD7-SA-P202.yaml

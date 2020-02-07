@@ -30,6 +30,7 @@ flash-all:
 .PHONY: clean
 clean:
 	rm -rf ${BUILD_DIRS}
+	grep "^  device_name" *.yaml  | cut -f3 -d":" | xargs rm -r
 
 .PHONY: clean-results
 clean-results:

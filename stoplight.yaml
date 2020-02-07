@@ -1,15 +1,15 @@
+substitutions:
+  device_name: stoplight
+  friendly_name: Stoplight
+
 esphome:
-  name: stoplight
+  name: ${device_name}
   platform: ESP8266
   board: esp01_1m
 
-<<: !include include/wifi.yaml
-
-api:
+<<: !include config/base.yaml
 
 logger:
-
-ota:
 
 binary_sensor:
   - platform: gpio
@@ -18,24 +18,28 @@ binary_sensor:
       mode: INPUT_PULLUP
       inverted: True
     name: "Sonoff 4CH Button 1"
+    internal: true
   - platform: gpio
     pin:
       number: GPIO9
       mode: INPUT_PULLUP
       inverted: True
     name: "Sonoff 4CH Button 2"
+    internal: true
   - platform: gpio
     pin:
       number: GPIO10
       mode: INPUT_PULLUP
       inverted: True
     name: "Sonoff 4CH Button 3"
+    internal: true
   - platform: gpio
     pin:
       number: GPIO14
       mode: INPUT_PULLUP
       inverted: True
     name: "Sonoff 4CH Button 4"
+    internal: true
   - platform: status
     name: "Sonoff 4CH Status"
 

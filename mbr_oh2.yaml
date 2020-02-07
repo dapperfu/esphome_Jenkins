@@ -2,4 +2,4 @@ substitutions:
   device_name: mbr_oh2
   friendly_name: ${device_name}
   
-<<: !include include/SYW-A18AGT1.yaml
+<<: !include fccid/SYW-A18AGT1.yaml

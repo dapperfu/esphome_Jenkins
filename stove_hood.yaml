@@ -1,0 +1,21 @@
+# Stove hood. Used to kill the stove hood lights and fans. Can only power
+# off, not turn on.  Auto-power on after 1 min for WAF.
+
+substitutions:
+  device_name: stove_hood
+  friendly_name: Stove Hood
+  device_uuid: 9c3188c5-9b5a-43cc-bdab-d171fee507fc
+
+<<: !include fccid/SYW-PLUGWIFI.yaml
+    
+switch:
+# Main relay
+  - platform: gpio
+    name: "${friendly_name} Relay"
+    pin: GPIO12
+    id: "${device_name}_relay"
+    restore_mode: RESTORE_DEFAULT_ON
+    # Automatically power it on after 1 min.
+    on_turn_off:
+    - delay: 1min
+    - switch.turn_on: "${device_name}_relay"

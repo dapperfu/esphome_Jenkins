@@ -1,6 +1,6 @@
 substitutions:
-  device_name: merkury_br30_1
-  friendly_name: Morning Alarm
+  device_name: merkury_br30_2
+  friendly_name: Morning Alarm 2
 
 <<: !include fccid/2AJ3WEBESHW01.yaml
 

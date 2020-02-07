@@ -1,5 +1,0 @@
-substitutions:
-  device_name: sonoff_pow_r2_1
-  friendly_name: SonoffPower1
-
-<<: !include include/sonoff_pow_r2.yaml

@@ -10,7 +10,6 @@ Most companies are rebranded, FCC/UL certified, versions of Aliexpress "bands".
 
 Popular brand at midwest retailer [Menards](https://www.menards.com/main/home.html).
 
-
 ### FEIT Electric Indoor Smart WiFi Wall Plug
 
 - Model Number: SMART_PLUG-IND Menards® SKU: 3580116 
@@ -19,4 +18,4 @@ Popular brand at midwest retailer [Menards](https://www.menards.com/main/home.ht
 
 ## Naming Scheme
 
-- Use ```{FCC-ID}.yaml``` when possible.
+- Use ```{FCC-ID}.yaml```

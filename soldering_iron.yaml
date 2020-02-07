@@ -1,0 +1,16 @@
+substitutions:
+  device_name: soldering_iron
+  friendly_name: "Soldering Iron"
+
+<<: !include include/sonoff_pow_r2.yaml
+
+switch:
+  - platform: gpio
+    name: "${friendly_name}"
+    pin: GPIO12
+    id: "${device_name}_relay"
+    inverted: no
+    restore_mode: ALWAYS_OFF
+    on_turn_on:
+    - delay: 10min
+    - switch.turn_off: "${device_name}_relay"
