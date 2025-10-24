@@ -15,10 +15,6 @@ time:
     id: sntp_time
         
 sensor:
-  - platform: uptime
-    name: ${friendly_name} Uptime
-    id: ${device_id}_uptime
-   
   - platform: wifi_signal
     name: ${friendly_name} WiFi Signal
     id: ${device_id}_signal
@@ -28,26 +24,33 @@ text_sensor:
     name: ${friendly_name} Version
     id: ${device_id}_version
   
-  - platform: wifi_info
-    ip_address:
-      name: ${friendly_name} IP
-      id: ${device_id}_ip
-    ssid:
-      name: ${friendly_name} WiFi SSID
-      id: ${device_id}_ssid
-    bssid:
-      name: ${friendly_name} WiFi BSSID
-      id: ${device_id}_bssid
-    mac_address:
-      name: ${friendly_name} WiFi MAC
-      id: ${device_id}_mac
-      
-  # Alternative WiFi SSID sensor using template
+  # WiFi information sensors using template platform for reliability
   - platform: template
-    name: ${friendly_name} Connected SSID
-    id: ${device_id}_connected_ssid
+    name: ${friendly_name} WiFi SSID
+    id: ${device_id}_ssid
     lambda: |-
       return {WiFi.SSID().c_str()};
+    update_interval: 5s
+    
+  - platform: template
+    name: ${friendly_name} WiFi BSSID
+    id: ${device_id}_bssid
+    lambda: |-
+      return {WiFi.BSSIDstr().c_str()};
+    update_interval: 5s
+    
+  - platform: template
+    name: ${friendly_name} WiFi MAC
+    id: ${device_id}_mac
+    lambda: |-
+      return {WiFi.macAddress().c_str()};
+    update_interval: 5s
+    
+  - platform: template
+    name: ${friendly_name} IP Address
+    id: ${device_id}_ip
+    lambda: |-
+      return {WiFi.localIP().toString().c_str()};
     update_interval: 5s
       
   - platform: template
