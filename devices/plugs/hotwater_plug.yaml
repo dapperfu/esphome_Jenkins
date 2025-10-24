@@ -11,7 +11,7 @@ switch:
     name: "${friendly_name} Relay"
     pin: GPIO12
     id: "${device_id}_relay"
-    restore_mode: RESTORE_DEFAULT_OFF
+    restore_mode: RESTORE_DEFAULT_ON
     # Automatically power it on after 30 seconds when turned off
     on_turn_off:
     - delay: 30s
