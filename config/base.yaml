@@ -38,6 +38,17 @@ text_sensor:
     bssid:
       name: ${friendly_name} WiFi BSSID
       id: ${device_id}_bssid
+    mac_address:
+      name: ${friendly_name} WiFi MAC
+      id: ${device_id}_mac
+      
+  # Alternative WiFi SSID sensor using template
+  - platform: template
+    name: ${friendly_name} Connected SSID
+    id: ${device_id}_connected_ssid
+    lambda: |-
+      return {WiFi.SSID().c_str()};
+    update_interval: 5s
       
   - platform: template
     name: ${friendly_name} Time
