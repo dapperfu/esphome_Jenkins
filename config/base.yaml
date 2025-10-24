@@ -32,6 +32,12 @@ text_sensor:
     ip_address:
       name: ${friendly_name} IP
       id: ${device_id}_ip
+    ssid:
+      name: ${friendly_name} WiFi SSID
+      id: ${device_id}_ssid
+    bssid:
+      name: ${friendly_name} WiFi BSSID
+      id: ${device_id}_bssid
       
   - platform: template
     name: ${friendly_name} Time
