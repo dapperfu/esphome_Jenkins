@@ -1,0 +1,29 @@
+[REQUIREMENT]
+UID: REQ-MAKE-001
+TITLE: Python Virtual Environment
+STATEMENT: The Makefile shall use 'venv' as the virtual environment directory name, not '.venv'.
+RATIONALE: Consistent naming convention aligns with project standards and user requirements.
+
+[REQUIREMENT]
+UID: REQ-MAKE-002
+TITLE: Variable Escaping Consistency
+STATEMENT: All Makefile variables shall use $${VAR} syntax consistently throughout the file.
+RATIONALE: Consistent variable escaping prevents make parsing errors and improves maintainability.
+
+[REQUIREMENT]
+UID: REQ-MAKE-003
+TITLE: YAML File Discovery
+STATEMENT: The Makefile shall discover YAML files in all subdirectories including the new devices/ structure.
+RATIONALE: Updated file discovery ensures all device configurations are included in build processes.
+
+[REQUIREMENT]
+UID: REQ-MAKE-004
+TITLE: File-Based Target Dependencies
+STATEMENT: Makefile targets shall use proper file-based dependencies where applicable to ensure correct build order.
+RATIONALE: File-based dependencies prevent unnecessary rebuilds and ensure proper build sequencing.
+
+[REQUIREMENT]
+UID: REQ-MAKE-005
+TITLE: Clean Target Functionality
+STATEMENT: The clean target shall work correctly with the new folder structure and remove all generated build artifacts.
+RATIONALE: Proper cleanup functionality ensures clean builds and prevents artifact accumulation.

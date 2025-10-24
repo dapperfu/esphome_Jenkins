@@ -1,0 +1,27 @@
+[REQUIREMENT]
+UID: REQ-PROJ-001
+TITLE: Project Folder Organization
+STATEMENT: The ESPHome project shall organize device configurations by functional category rather than scattered at root level.
+RATIONALE: Functional organization improves maintainability and navigation of device configurations.
+
+[REQUIREMENT]
+UID: REQ-PROJ-002
+TITLE: Device Directory Structure
+STATEMENT: Device configurations shall be organized in the following structure:
+- devices/plugs/ - Smart plug configurations
+- devices/lights/ - Smart light and bulb configurations  
+- devices/safety/ - Safety equipment configurations
+- devices/other/ - Miscellaneous device configurations
+RATIONALE: Clear categorization by device function enables easier maintenance and discovery.
+
+[REQUIREMENT]
+UID: REQ-PROJ-003
+TITLE: FCCID Preservation
+STATEMENT: All device configurations shall maintain their FCCID associations through the fccid/ directory structure.
+RATIONALE: FCCID compliance is required for device certification and regulatory compliance.
+
+[REQUIREMENT]
+UID: REQ-PROJ-004
+TITLE: Configuration File Naming
+STATEMENT: Device configuration files shall use descriptive names that indicate their purpose (e.g., tv_plug.yaml, hotwater_plug.yaml).
+RATIONALE: Descriptive naming improves code readability and device identification.
