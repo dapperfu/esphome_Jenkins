@@ -13,6 +13,9 @@ time:
   - platform: sntp
     timezone: Etc/EST
     id: sntp_time
+    servers:
+      - 192.168.0.20
+      - 192.168.0.30
         
 sensor:
   - platform: wifi_signal
