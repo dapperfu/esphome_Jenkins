@@ -23,7 +23,7 @@ STATEMENT: Makefile targets shall use proper file-based dependencies where appli
 RATIONALE: File-based dependencies prevent unnecessary rebuilds and ensure proper build sequencing.
 
 [REQUIREMENT]
-UID: REQ-MAKE-005
-TITLE: Clean Target Functionality
-STATEMENT: The clean target shall work correctly with the new folder structure and remove all generated build artifacts.
-RATIONALE: Proper cleanup functionality ensures clean builds and prevents artifact accumulation.
+UID: REQ-MAKE-006
+TITLE: Modern Python Version
+STATEMENT: The Makefile shall use Python 3.12 or newer for virtual environment creation and package management.
+RATIONALE: Modern Python versions provide better performance, security, and compatibility with current ESPHome and package dependencies.
