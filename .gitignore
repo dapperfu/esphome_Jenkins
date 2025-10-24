@@ -1,5 +1,13 @@
+# ESPHome specific
 .esphome
 secrets.yaml
+secrets.yml
+secrets.json
+secrets.yaml.bak
+secrets.yml.bak
+secrets.json.bak
+
+# Virtual environments
 venv
 
 # Byte-compiled / optimized / DLL files
@@ -85,14 +93,114 @@ celerybeat-schedule
 # SageMath parsed files
 *.sage.py
 
-# Environments
+# Environment variables and secrets
 .env
+.env.*
+.env.local
+.env.development
+.env.test
+.env.production
 .venv
 env/
 venv/
 ENV/
 env.bak/
 venv.bak/
+
+# API Keys, Tokens, and Credentials
+*.key
+*.pem
+*.p12
+*.pfx
+*.crt
+*.cert
+*.p8
+api_keys.txt
+tokens.txt
+credentials.txt
+auth.json
+auth.yaml
+auth.yml
+
+# Database and connection strings
+*.db
+*.sqlite
+*.sqlite3
+database.yml
+database.yaml
+connection_strings.txt
+
+# Configuration files that might contain secrets
+config/secrets.yaml
+config/secrets.yml
+config/secrets.json
+config/local.yaml
+config/local.yml
+config/local.json
+config/production.yaml
+config/production.yml
+config/production.json
+config/development.yaml
+config/development.yml
+config/development.json
+
+# Backup files
+*.bak
+*.backup
+*.old
+*.orig
+*~
+
+# Jenkins specific secrets
+jenkins_secrets.yaml
+jenkins_secrets.yml
+jenkins_secrets.json
+.jenkins_secrets
+jenkins_credentials.xml
+credentials.xml
+
+# SSH keys and certificates
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+id_ecdsa
+id_ecdsa.pub
+known_hosts
+authorized_keys
+
+# Logs that might contain sensitive information
+*.log
+logs/
+log/
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+.temp/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE and editor files
+.vscode/settings.json
+.vscode/launch.json
+.idea/
+*.swp
+*.swo
+*~
+
+# Package manager files
+package-lock.json
+yarn.lock
+Pipfile.lock
 
 # Spyder project settings
 .spyderproject
