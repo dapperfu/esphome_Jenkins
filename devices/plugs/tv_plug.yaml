@@ -4,3 +4,11 @@ substitutions:
   friendly_name: TV Plug
 
 <<: !include ../../fccid/SYW-PLUGWIFI.yaml
+
+switch:
+# Main relay - override to default ON after power failure
+  - platform: gpio
+    name: "${friendly_name} Relay"
+    pin: GPIO12
+    id: "${device_id}_relay"
+    restore_mode: RESTORE_DEFAULT_ON
