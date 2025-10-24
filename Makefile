@@ -3,7 +3,7 @@ BUILD_DIRS=$(patsubst %.yaml,%,$(YAMLS))
 
 # Configuration
 PYTHON_VENV?=venv
-PYTHON_VER?=python3.7
+PYTHON_VER?=python3.12
 PYTHON_BIN?=$(shell which $(PYTHON_VER))
 
 .PHONY: debug
