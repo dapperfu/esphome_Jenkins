@@ -16,6 +16,21 @@ time:
     servers:
       - 192.168.0.20
       - 192.168.0.30
+    on_time:
+      # Daily restart at 3:00 AM for hot water devices
+      - seconds: 0
+        minutes: 0
+        hours: 3
+        then:
+          - if:
+              condition:
+                lambda: |-
+                  // Only restart if this device has a hot water relay
+                  return id("${device_id}_relay").has_state();
+              then:
+                - switch.turn_off: "${device_id}_relay"
+                - delay: 30s
+                - switch.turn_on: "${device_id}_relay"
         
 sensor:
   - platform: wifi_signal

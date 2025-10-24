@@ -16,3 +16,20 @@ switch:
     on_turn_off:
     - delay: 30s
     - switch.turn_on: "${device_id}_relay"
+
+# Daily restart automation at 3:00 AM
+time:
+  - platform: sntp
+    timezone: Etc/EST
+    id: sntp_time
+    servers:
+      - 192.168.0.20
+      - 192.168.0.30
+    on_time:
+      - seconds: 0
+        minutes: 0
+        hours: 3
+        then:
+          - switch.turn_off: "${device_id}_relay"
+          - delay: 30s
+          - switch.turn_on: "${device_id}_relay"
