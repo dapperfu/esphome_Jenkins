@@ -1,5 +1,6 @@
 substitutions:
-  device_name: hotwater_plug
+  device_name: hotwater-plug
+  device_id: hotwater_plug
   friendly_name: Hot Water Plug
 
 <<: !include ../../fccid/SYW-PLUGWIFI.yaml
@@ -9,9 +10,9 @@ switch:
   - platform: gpio
     name: "${friendly_name} Relay"
     pin: GPIO12
-    id: "${device_name}_relay"
+    id: "${device_id}_relay"
     restore_mode: RESTORE_DEFAULT_OFF
     # Automatically power it on after 30 seconds when turned off
     on_turn_off:
     - delay: 30s
-    - switch.turn_on: "${device_name}_relay"
+    - switch.turn_on: "${device_id}_relay"
