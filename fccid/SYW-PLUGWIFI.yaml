@@ -10,7 +10,8 @@
 
 esphome:
   name: ${device_name}
-  platform: ESP8266
+
+esp8266:
   board: esp01_1m
   
 <<: !include ../config/base.yaml
@@ -27,14 +28,14 @@ binary_sensor:
       inverted: True               
     name: "${friendly_name} Button"             
     on_press:                          
-      - switch.toggle: "${device_name}_relay"
+      - switch.toggle: "${device_id}_relay"
 
 switch:
 # Main relay
   - platform: gpio
     name: "${friendly_name} Relay"
     pin: GPIO12
-    id: "${device_name}_relay"
+    id: "${device_id}_relay"
     restore_mode: RESTORE_DEFAULT_OFF
   - platform: gpio
     pin: GPIO04
