@@ -25,3 +25,15 @@ UID: REQ-PROJ-004
 TITLE: Configuration File Naming
 STATEMENT: Device configuration files shall use descriptive names that indicate their purpose (e.g., tv_plug.yaml, hotwater_plug.yaml).
 RATIONALE: Descriptive naming improves code readability and device identification.
+
+[REQUIREMENT]
+UID: REQ-PROJ-005
+TITLE: Base Configuration Content Restrictions
+STATEMENT: The config/base.yaml file shall only contain configurations that apply universally to all devices. Device-specific configurations including time servers, timezones, automation rules, and device-specific sensors shall not be included in base.yaml.
+RATIONALE: Since base.yaml is included in all device configurations through FCCID templates, device-specific configurations would be incorrectly applied to all devices, causing conflicts and improper behavior.
+
+[REQUIREMENT]
+UID: REQ-PROJ-006
+TITLE: Universal Base Configuration Content
+STATEMENT: The config/base.yaml file shall only contain configurations that are truly universal across all devices, such as API settings, OTA platform settings, web server settings, and generic WiFi signal sensors using substitution variables.
+RATIONALE: Universal configurations ensure consistent behavior across all devices while preventing device-specific settings from being incorrectly applied to all devices.
