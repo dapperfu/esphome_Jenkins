@@ -1,0 +1,23 @@
+[REQUIREMENT]
+UID: REQ-DEV-001
+TITLE: Device Configuration Template
+STATEMENT: All device configurations shall be based on appropriate FCCID templates from the fccid/ directory.
+RATIONALE: Template-based configuration ensures consistency and reduces configuration errors.
+
+[REQUIREMENT]
+UID: REQ-DEV-002
+TITLE: Device Naming Convention
+STATEMENT: Each device configuration shall define device_name and friendly_name substitutions for consistent identification.
+RATIONALE: Consistent naming enables proper device identification in Home Assistant and other integrations.
+
+[REQUIREMENT]
+UID: REQ-DEV-003
+TITLE: ESPHome Best Practices Compliance
+STATEMENT: All device configurations shall follow current ESPHome best practices including proper platform definitions, restore modes, and component configurations.
+RATIONALE: Best practices ensure optimal performance and compatibility with ESPHome updates.
+
+[REQUIREMENT]
+UID: REQ-DEV-004
+TITLE: Configuration Validation
+STATEMENT: All device configurations shall be validated against ESPHome schema requirements.
+RATIONALE: Schema validation prevents configuration errors and ensures proper device operation.

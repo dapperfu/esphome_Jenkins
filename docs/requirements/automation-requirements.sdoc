@@ -1,0 +1,23 @@
+[REQUIREMENT]
+UID: REQ-AUTO-001
+TITLE: Hot Water Plug Auto-On Behavior
+STATEMENT: The hotwater_plug device shall automatically turn itself back on 30 seconds after being turned off.
+RATIONALE: Hot water systems require continuous operation for proper function and safety.
+
+[REQUIREMENT]
+UID: REQ-AUTO-002
+TITLE: Dryer Fan Plug Auto-On Behavior
+STATEMENT: The dryer_fan_plug device shall automatically turn itself back on 30 seconds after being turned off.
+RATIONALE: Dryer ventilation systems require continuous operation to prevent moisture buildup and potential safety issues.
+
+[REQUIREMENT]
+UID: REQ-AUTO-003
+TITLE: Automation Implementation Pattern
+STATEMENT: Auto-on automation shall be implemented using ESPHome's on_turn_off action with delay followed by switch.turn_on action.
+RATIONALE: This pattern provides reliable automation behavior using ESPHome's built-in automation system.
+
+[REQUIREMENT]
+UID: REQ-AUTO-004
+TITLE: Automation Timing Precision
+STATEMENT: Automation delays shall be specified in seconds (e.g., 30s) for precise timing control.
+RATIONALE: Precise timing ensures consistent automation behavior and meets operational requirements.

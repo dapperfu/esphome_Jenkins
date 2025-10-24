@@ -1,0 +1,5 @@
+substitutions:
+  device_name: tv_plug
+  friendly_name: TV Plug
+
+<<: !include ../../fccid/SYW-PLUGWIFI.yaml
