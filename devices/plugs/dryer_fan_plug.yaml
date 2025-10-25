@@ -1,6 +1,7 @@
 substitutions:
-  device_name: dryer_fan_plug
-  friendly_name: Dryer Fan Plug
+  device_name: dryer-fan
+  device_id: dryer_fan
+  friendly_name: Dryer Fan
 
 <<: !include ../../fccid/SYW-PLUGWIFI.yaml
 
@@ -9,9 +10,26 @@ switch:
   - platform: gpio
     name: "${friendly_name} Relay"
     pin: GPIO12
-    id: "${device_name}_relay"
-    restore_mode: RESTORE_DEFAULT_OFF
+    id: "${device_id}_relay"
+    restore_mode: RESTORE_DEFAULT_ON
     # Automatically power it on after 30 seconds when turned off
     on_turn_off:
     - delay: 30s
-    - switch.turn_on: "${device_name}_relay"
+    - switch.turn_on: "${device_id}_relay"
+
+# Daily restart automation at 3:00 AM
+time:
+  - platform: sntp
+    timezone: Etc/EST
+    id: sntp_time
+    servers:
+      - 192.168.0.20
+      - 192.168.0.30
+    on_time:
+      - seconds: 0
+        minutes: 0
+        hours: 3
+        then:
+          - switch.turn_off: "${device_id}_relay"
+          - delay: 30s
+          - switch.turn_on: "${device_id}_relay"
