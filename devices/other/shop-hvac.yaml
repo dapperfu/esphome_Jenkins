@@ -1,0 +1,8 @@
+substitutions:
+  device_name: shop-hvac
+  device_id: shop_hvac
+  friendly_name: Shop HVAC
+
+<<: !include ../../fccid/2AK8P-X10S.yaml
+
+

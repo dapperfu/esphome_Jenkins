@@ -1,0 +1,14 @@
+# Tuya X10S (assumed ESP8266-based) generic FCC template
+#   FCCID: 2AK8P-X10S
+#   Reference: https://fccid.io/2AK8P-X10S
+#   Note: GPIO mapping is device-variant specific; extend in device configs as needed.
+
+esphome:
+  name: ${device_name}
+
+esp8266:
+  board: esp01_1m
+
+<<: !include ../config/base.yaml
+
+
