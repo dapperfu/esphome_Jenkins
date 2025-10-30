@@ -1,7 +1,7 @@
 substitutions:
-  device_name: hotwater-plug
-  device_id: hotwater_plug
-  friendly_name: Hot Water Plug
+  device_name: hotwater
+  device_id: hotwater
+  friendly_name: Hotwater
 
 <<: !include ../../fccid/SYW-PLUGWIFI.yaml
 
