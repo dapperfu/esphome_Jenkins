@@ -1,7 +1,9 @@
-# Tuya X10S (assumed ESP8266-based) generic FCC template
+# Aoycocr X10S Smart Plug (Tuya)
 #   FCCID: 2AK8P-X10S
 #   Reference: https://fccid.io/2AK8P-X10S
-#   Note: GPIO mapping is device-variant specific; extend in device configs as needed.
+#   Notes:
+#   - ESP8266-based with HLW8012/BL0937 power monitoring
+#   - GPIO mapping aligns with common Tasmota template for X10S
 
 esphome:
   name: ${device_name}
@@ -10,5 +12,53 @@ esp8266:
   board: esp01_1m
 
 <<: !include ../config/base.yaml
+
+logger:
+
+# Button (top) toggles the main relay
+binary_sensor:
+  - platform: gpio
+    pin: GPIO13
+    name: "${friendly_name} Button"
+    on_press:
+      - switch.toggle: "${device_id}_relay"
+
+switch:
+  # Main relay
+  - platform: gpio
+    id: "${device_id}_relay"
+    name: "${friendly_name} Relay"
+    pin: GPIO4
+    restore_mode: RESTORE_DEFAULT_OFF
+
+# Status LED on GPIO0 (inverted)
+status_led:
+  pin:
+    number: GPIO0
+    inverted: true
+
+sensor:
+  # HLW8012/BL0937 power monitoring
+  - platform: hlw8012
+    sel_pin:
+      number: GPIO12
+      inverted: true
+    cf_pin: GPIO5
+    cf1_pin: GPIO14
+    current_resistor: 0.001
+    voltage_divider: 2401
+    current:
+      name: "${friendly_name} Current"
+    voltage:
+      name: "${friendly_name} Voltage"
+    power:
+      name: "${friendly_name} Power"
+      id: ${device_id}_power
+    update_interval: 10s
+
+  # Daily energy derived from power sensor
+  - platform: total_daily_energy
+    name: "${friendly_name} Daily Energy"
+    power_id: ${device_id}_power
 
 
