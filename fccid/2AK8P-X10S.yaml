@@ -46,7 +46,7 @@ sensor:
     cf_pin: GPIO5
     cf1_pin: GPIO14
     current_resistor: 0.001
-    voltage_divider: 863
+    voltage_divider: 886
     current:
       name: "${friendly_name} Current"
     voltage:
