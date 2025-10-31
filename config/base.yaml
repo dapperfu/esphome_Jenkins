@@ -29,20 +29,26 @@ text_sensor:
     name: ${friendly_name} Version
     id: ${device_id}_version
   
-  # WiFi information sensors using built-in wifi_info component (no lambdas)
+  # WiFi information sensors using built-in wifi_info component
+  # These update automatically on WiFi state change, with periodic polling reduced to 60s
+  # SSID/BSSID/MAC rarely change, so less frequent polling is sufficient
   - platform: wifi_info
     ip_address:
       name: ${friendly_name} IP Address
       id: ${device_id}_ip
+      update_interval: 60s
     ssid:
       name: ${friendly_name} WiFi SSID
       id: ${device_id}_ssid
+      update_interval: 60s
     bssid:
       name: ${friendly_name} WiFi BSSID
       id: ${device_id}_bssid
+      update_interval: 60s
     mac_address:
       name: ${friendly_name} WiFi MAC
       id: ${device_id}_mac
+      update_interval: 60s
       
   # Time sensor requires lambda for date/time formatting (using direct ID reference, no string interpolation)
   - platform: template
