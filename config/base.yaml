@@ -43,4 +43,14 @@ text_sensor:
     mac_address:
       name: ${friendly_name} WiFi MAC
       id: ${device_id}_mac
+      
+  # Time sensor requires lambda for date/time formatting (using direct ID reference, no string interpolation)
+  - platform: template
+    name: ${friendly_name} Time
+    id: ${device_id}_time
+    lambda: |-
+      char str[17];
+      time_t currTime = id(sntp_time).now().timestamp;
+      strftime(str, sizeof(str), "%Y-%m-%d %H:%M", localtime(&currTime));
+      return { str };
 <<: !include wifi.yaml
