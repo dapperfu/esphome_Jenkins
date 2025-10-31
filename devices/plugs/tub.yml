@@ -6,7 +6,7 @@ substitutions:
 <<: !include ../../fccid/SYW-PLUGWIFI.yaml
 
 switch:
-# Main relay
+# Main relay - defaults to OFF after power failure
   - platform: gpio
     name: "${friendly_name} Relay"
     pin: GPIO12
