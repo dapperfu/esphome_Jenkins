@@ -1,0 +1,8 @@
+substitutions:
+  device_name: office
+  device_id: office
+  friendly_name: Office
+
+<<: !include ../../fccid/2AK8P-X10S.yaml
+
+

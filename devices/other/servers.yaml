@@ -1,8 +1,0 @@
-substitutions:
-  device_name: servers
-  device_id: servers
-  friendly_name: Servers
-
-<<: !include ../../fccid/2AK8P-X10S.yaml
-
-
