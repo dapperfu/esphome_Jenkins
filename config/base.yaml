@@ -51,9 +51,11 @@ text_sensor:
       update_interval: 60s
       
   # Time sensor requires lambda for date/time formatting (using direct ID reference, no string interpolation)
+  # Updates every 30 seconds to reduce unnecessary polling
   - platform: template
     name: ${friendly_name} Time
     id: ${device_id}_time
+    update_interval: 30s
     lambda: |-
       char str[17];
       time_t currTime = id(sntp_time).now().timestamp;
