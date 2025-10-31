@@ -1,0 +1,7 @@
+substitutions:
+  device_name: merkury_mi_ww105
+  device_id: merkury_mi_ww105
+  friendly_name: Merkury MI-WW105
+
+<<: !include ../../fccid/2AMXX-AW-01.yaml
+

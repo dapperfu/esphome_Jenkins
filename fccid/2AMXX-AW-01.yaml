@@ -1,0 +1,47 @@
+# Merkury Smart Plug
+#   Model Number: MI-WW105
+#   FCCID: 2AMXX-AW-01 [https://fccid.io/2AMXX-AW-01]
+#   Smart Plug with WiFi control
+#
+# SEO: esphome 2AMXX-AW-01 merkury MI-WW105
+
+esphome:
+  name: ${device_name}
+
+esp8266:
+  board: esp01_1m
+  
+<<: !include ../config/base.yaml
+
+# Enable Logging.
+logger:
+
+# Button on plug.
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO14
+      mode: INPUT_PULLUP
+      inverted: True               
+    name: "${friendly_name} Button"             
+    on_press:                          
+      - switch.toggle: "${device_id}_relay"
+
+switch:
+# Main relay
+  - platform: gpio
+    name: "${friendly_name} Relay"
+    pin: GPIO12
+    id: "${device_id}_relay"
+    restore_mode: RESTORE_DEFAULT_OFF
+  - platform: gpio
+    pin: GPIO04
+    id: led2
+    inverted: True
+    restore_mode: RESTORE_DEFAULT_ON
+  - platform: gpio
+    pin: GPIO13
+    id: led1
+    inverted: True
+    restore_mode: RESTORE_DEFAULT_ON
+
