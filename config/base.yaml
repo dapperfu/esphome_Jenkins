@@ -29,41 +29,18 @@ text_sensor:
     name: ${friendly_name} Version
     id: ${device_id}_version
   
-  # WiFi information sensors using template platform for reliability
-  - platform: template
-    name: ${friendly_name} WiFi SSID
-    id: ${device_id}_ssid
-    lambda: |-
-      return {WiFi.SSID().c_str()};
-    update_interval: 5s
-    
-  - platform: template
-    name: ${friendly_name} WiFi BSSID
-    id: ${device_id}_bssid
-    lambda: |-
-      return {WiFi.BSSIDstr().c_str()};
-    update_interval: 5s
-    
-  - platform: template
-    name: ${friendly_name} WiFi MAC
-    id: ${device_id}_mac
-    lambda: |-
-      return {WiFi.macAddress().c_str()};
-    update_interval: 5s
-    
-  - platform: template
-    name: ${friendly_name} IP Address
-    id: ${device_id}_ip
-    lambda: |-
-      return {WiFi.localIP().toString().c_str()};
-    update_interval: 5s
-      
-  - platform: template
-    name: ${friendly_name} Time
-    id: ${device_id}_time
-    lambda: |-
-      char str[17];
-      time_t currTime = id(sntp_time).now().timestamp;
-      strftime(str, sizeof(str), "%Y-%m-%d %H:%M", localtime(&currTime));
-      return { str };
+  # WiFi information sensors using built-in wifi_info component (no lambdas)
+  - platform: wifi_info
+    ip_address:
+      name: ${friendly_name} IP Address
+      id: ${device_id}_ip
+    ssid:
+      name: ${friendly_name} WiFi SSID
+      id: ${device_id}_ssid
+    bssid:
+      name: ${friendly_name} WiFi BSSID
+      id: ${device_id}_bssid
+    mac_address:
+      name: ${friendly_name} WiFi MAC
+      id: ${device_id}_mac
 <<: !include wifi.yaml
