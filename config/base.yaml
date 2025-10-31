@@ -48,7 +48,6 @@ text_sensor:
     mac_address:
       name: ${friendly_name} WiFi MAC
       id: ${device_id}_mac
-      update_interval: 60s
       
   # Time sensor requires lambda for date/time formatting (using direct ID reference, no string interpolation)
   # Updates every 30 seconds to reduce unnecessary polling
