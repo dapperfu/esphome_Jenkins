@@ -214,3 +214,6 @@ Pipfile.lock
 
 # mypy
 .mypy_cache/
+
+# Compiled binaries
+*.bin
