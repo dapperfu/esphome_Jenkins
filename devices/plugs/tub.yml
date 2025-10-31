@@ -1,0 +1,19 @@
+substitutions:
+  device_name: tub
+  device_id: tub
+  friendly_name: Tub
+
+<<: !include ../../fccid/SYW-PLUGWIFI.yaml
+
+switch:
+# Main relay
+  - platform: gpio
+    name: "${friendly_name} Relay"
+    pin: GPIO12
+    id: "${device_id}_relay"
+    restore_mode: RESTORE_DEFAULT_OFF
+    # Automatically shut off after 10 minutes when turned on
+    on_turn_on:
+    - delay: 10min
+    - switch.turn_off: "${device_id}_relay"
+
