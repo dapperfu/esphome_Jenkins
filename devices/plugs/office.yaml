@@ -5,6 +5,3 @@ substitutions:
 
 <<: !include ../../fccid/2AK8P-X10S.yaml
 
-# Disable web server to prevent stuck EventSource connections
-web_server:
-
