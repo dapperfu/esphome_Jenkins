@@ -71,6 +71,35 @@ $(PYTHON_VENV)/bin/python:
 web:
 	nmap -p 80 $(IOT_SUBNET) -oG - | grep open | cut -f2 -d" " | xargs -n1 firefox http://
 
+.PHONY: verify-%
+verify-%: %.yaml
+	@echo "Verifying substitutions in $<..."
+	@$(PYTHON_VENV)/bin/esphome config $< | grep -A 3 "ap:" | grep "ssid:" || echo "Warning: Could not find AP SSID in resolved config"
+	@$(PYTHON_VENV)/bin/esphome config $< | grep "\${" && echo "ERROR: Unresolved substitutions found!" && exit 1 || echo "✓ All substitutions resolved"
+
+.PHONY: verify-binary-%
+verify-binary-%: %.yaml
+	@echo "Checking compiled binary for $<..."
+	@DEVICE_DIR=$$(dirname $<); \
+	DEVICE_NAME=$$(basename $< .yaml); \
+	BINARY="$$DEVICE_DIR/.esphome/build/$$DEVICE_NAME/.pioenvs/$$DEVICE_NAME/firmware.bin"; \
+	if [ -f "$$BINARY" ]; then \
+		echo "Checking strings in $$BINARY..."; \
+		if strings "$$BINARY" | grep -q "\${"; then \
+			echo "ERROR: Found unresolved substitutions in binary!"; \
+			strings "$$BINARY" | grep "\${"; \
+			exit 1; \
+		else \
+			echo "✓ No unresolved substitutions in binary"; \
+			echo "AP SSID strings found:"; \
+			strings "$$BINARY" | grep "_ap$$" | head -5 || echo "No _ap strings found"; \
+		fi; \
+	else \
+		echo "ERROR: Binary not found at $$BINARY"; \
+		echo "Please compile first: make $$(basename $< .yaml)"; \
+		exit 1; \
+	fi
+
 .PHONY: help
 help:
 	@echo "Available targets:"
@@ -81,4 +110,6 @@ help:
 	@echo "  venv         - Create Python virtual environment"
 	@echo "  debug        - Show debug information"
 	@echo "  web          - Open web interfaces for devices on IOT_SUBNET"
+	@echo "  verify-<dev> - Verify substitutions in device YAML before compilation"
+	@echo "  verify-binary-<dev> - Check compiled binary for unresolved substitutions"
 	@echo "  help         - Show this help message"
