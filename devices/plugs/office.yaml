@@ -5,3 +5,11 @@ substitutions:
 
 <<: !include ../../fccid/2AK8P-X10S.yaml
 
+switch:
+# Main relay - override to default ON after power failure
+  - platform: gpio
+    id: "${device_id}_relay"
+    name: "${friendly_name} Relay"
+    pin: GPIO4
+    restore_mode: RESTORE_DEFAULT_ON
+

@@ -1,7 +1,7 @@
 substitutions:
-  device_name: tv-plug
-  device_id: tv_plug
-  friendly_name: TV Plug
+  device_name: tv
+  device_id: tv
+  friendly_name: TV
 
 <<: !include ../../fccid/SYW-PLUGWIFI.yaml
 
