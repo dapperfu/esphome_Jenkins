@@ -5,6 +5,13 @@ substitutions:
 
 <<: !include ../../fccid/SYW-PLUGWIFI.yaml
 
+script:
+  - id: "${device_id}_auto_off"
+    mode: restart
+    then:
+      - delay: 10min
+      - switch.turn_off: "${device_id}_relay"
+
 switch:
 # Main relay - defaults to OFF after power failure
   - platform: gpio
@@ -12,8 +19,10 @@ switch:
     pin: GPIO12
     id: "${device_id}_relay"
     restore_mode: RESTORE_DEFAULT_OFF
-    # Automatically shut off after 10 minutes when turned on
+    # Automatically shut off after 10 minutes when turned on (non-blocking)
     on_turn_on:
-    - delay: 10min
-    - switch.turn_off: "${device_id}_relay"
+      - script.execute: "${device_id}_auto_off"
+    # Stop the auto-off script if manually turned off
+    on_turn_off:
+      - script.stop: "${device_id}_auto_off"
 
