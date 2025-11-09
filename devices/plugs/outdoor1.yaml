@@ -1,0 +1,7 @@
+substitutions:
+  device_name: outdoor1
+  device_id: outdoor1
+  friendly_name: Outdoor 1
+
+<<: !include ../../fccid/SYW-PLUGWIFIWP.yaml
+
