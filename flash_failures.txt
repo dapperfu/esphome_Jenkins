@@ -1,0 +1,162 @@
+ESPHome Flash Failure Report
+============================================================
+Generated: 2025-11-14 17:22:52
+Total devices: 38
+Failed to flash: 38
+
+Devices that failed to flash:
+------------------------------------------------------------
+Device: feit_br30_rgb1
+  YAML: devices/lights/feit_br30_rgb1.yaml
+  Error: Build failed
+
+Device: feit_od_00
+  YAML: devices/lights/feit_od_00.yaml
+  Error: Build failed
+
+Device: feit_od_01
+  YAML: devices/lights/feit_od_01.yaml
+  Error: Build failed
+
+Device: od_plug1
+  YAML: devices/lights/feit_od_plug_1.yaml
+  Error: Build failed
+
+Device: feit_rgb1
+  YAML: devices/lights/feit_rgb1.yaml
+  Error: Build failed
+
+Device: feit_rgb2
+  YAML: devices/lights/feit_rgb2.yaml
+  Error: Build failed
+
+Device: feit_rgb3
+  YAML: devices/lights/feit_rgb3.yaml
+  Error: Build failed
+
+Device: feit_rgb4
+  YAML: devices/lights/feit_rgb4.yaml
+  Error: Build failed
+
+Device: mbr_oh1
+  YAML: devices/lights/mbr_oh1.yaml
+  Error: Build failed
+
+Device: mbr_oh2
+  YAML: devices/lights/mbr_oh2.yaml
+  Error: Build failed
+
+Device: merkury_br30_1
+  YAML: devices/lights/merkury_br30_1.yaml
+  Error: Build failed
+
+Device: merkury_br30_2
+  YAML: devices/lights/merkury_br30_2.yaml
+  Error: Build failed
+
+Device: dev_remote
+  YAML: devices/other/dev_remote.yaml
+  Error: Build failed
+
+Device: office
+  YAML: devices/other/office.yaml
+  Error: Connection timeout
+
+Device: servers
+  YAML: devices/other/servers.yaml
+  Error: Connection timeout
+
+Device: shop-hvac
+  YAML: devices/other/shop-hvac.yaml
+  Error: Connection timeout
+
+Device: soldering_iron
+  YAML: devices/other/soldering_iron.yaml
+  Error: Build failed
+
+Device: stanley_hotglue
+  YAML: devices/other/stanley_hotglue.yaml
+  Error: Build failed
+
+Device: stoplight
+  YAML: devices/other/stoplight.yaml
+  Error: Build failed
+
+Device: vivitar_powerstrip1
+  YAML: devices/other/vivitar_powerstrip1.yaml
+  Error: Build failed
+
+Device: dryer-fan
+  YAML: devices/plugs/dryer_fan_plug.yaml
+  Error: Connection timeout
+
+Device: tv_plug_1
+  YAML: devices/plugs/feit_plug_0.yaml
+  Error: Build failed
+
+Device: tv_plug_2
+  YAML: devices/plugs/feit_plug_1.yaml
+  Error: Build failed
+
+Device: feit_plug_2
+  YAML: devices/plugs/feit_plug_2.yaml
+  Error: Build failed
+
+Device: feit_plug_3
+  YAML: devices/plugs/feit_plug_3.yaml
+  Error: Build failed
+
+Device: feit_plug_4
+  YAML: devices/plugs/feit_plug_4.yaml
+  Error: Build failed
+
+Device: csi_station_1a
+  YAML: devices/plugs/feit_plug_5.yaml
+  Error: Build failed
+
+Device: hotwater
+  YAML: devices/plugs/hotwater_plug.yaml
+  Error: Connection timeout
+
+Device: merkury-mi-ww105
+  YAML: devices/plugs/merkury_mi_ww105.yaml
+  Error: INFO ESPHome 2025.10.3
+INFO Reading configuration /projects/esphome_Jenkins/devices/plugs/merkury_mi_ww105.yaml...
+ERROR Found no valid options for upload/logging, please make sure relevant sections (
+
+Device: nas_plug
+  YAML: devices/plugs/nas_plug.yaml
+  Error: Build failed
+
+Device: office
+  YAML: devices/plugs/office.yaml
+  Error: Connection timeout
+
+Device: outdoor1
+  YAML: devices/plugs/outdoor1.yaml
+  Error: Connection timeout
+
+Device: stove_hood
+  YAML: devices/plugs/stove_hood.yaml
+  Error: Build failed
+
+Device: tub
+  YAML: devices/plugs/tub.yml
+  Error: Connection timeout
+
+Device: tv
+  YAML: devices/plugs/tv.yaml
+  Error: Connection timeout
+
+Device: tv
+  YAML: devices/plugs/tv_plug.yaml
+  Error: Connection timeout
+
+Device: vivitar_plug_one
+  YAML: devices/plugs/vivitar_plug_one.yaml
+  Error: Build failed
+
+Device: cnc
+  YAML: devices/safety/cnc.yaml
+  Error: Build failed
+

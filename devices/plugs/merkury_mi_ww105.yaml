@@ -1,7 +1,48 @@
 substitutions:
-  device_name: merkury_mi_ww105
+  device_name: merkury-mi-ww105
   device_id: merkury_mi_ww105
   friendly_name: Merkury MI-WW105
 
-<<: !include ../../fccid/2AMXX-AW-01.yaml
+# Minimal build - bypass base.yaml to exclude OTA and unnecessary features
+esphome:
+  name: ${device_name}
+  platformio_options:
+    board_build.f_cpu: 80000000L  # 80MHz (default 160MHz) - saves power and space
+    board_build.flash_mode: dout  # Compatible flash mode
+    build_flags:
+      - -Os  # Optimize for size
+      - -DNDEBUG  # Disable debug assertions
+      - -DCORE_DEBUG_LEVEL=0  # No debug output
+      - -fno-exceptions  # Disable exceptions
+      - -ffunction-sections
+      - -fdata-sections
+      - -Wl,--gc-sections  # Remove unused sections
 
+esp8266:
+  board: esp01_1m
+
+# Use wifi.yaml include which handles secrets properly
+<<: !include ../../config/wifi.yaml
+
+# API temporarily disabled to save space - will need to re-enable after flash for Home Assistant
+# api:
+
+# OTA DISABLED for minimal build - saves ~20-30KB
+# Note: After successful flash, you can re-enable OTA for future updates
+
+# Disable web server to save space
+web_server:
+
+# Disable logger completely to save space
+logger:
+
+# Button disabled to save space - can be re-enabled after initial flash
+# binary_sensor:
+
+# Only essential relay - remove LED controls to save space
+switch:
+  - platform: gpio
+    name: "${friendly_name} Relay"
+    pin: GPIO12
+    id: "${device_id}_relay"
+    restore_mode: RESTORE_DEFAULT_OFF

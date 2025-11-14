@@ -1,0 +1,12 @@
+Devices that cannot be flashed (cannot find .local or connection issues):
+======================================================================
+  - dryer-fan
+  - hotwater
+  - office
+  - outdoor1
+  - servers
+  - shop-hvac
+  - tub
+  - tv
+
+Total: 8 devices
